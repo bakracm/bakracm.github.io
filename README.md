@@ -4,9 +4,70 @@
 
 **Medium-scale Abstraction**
 
-Sam and I co-wrote the UI betPost components which employ medium-scale abstraction. This consists of a bet feed and a sidebar with
-the top bets by interaction. The code sample abstracts away the requirement for multiple files that ultimately do the same 
-thing. Instead, the features rely on the betPost as a component despite having different purposes. (?) need to look at this.
+Sam and I co-wrote the three UI bet components which employ medium-scale abstraction. This consists of a bet feed (sam wrote and I edited), a sidebar with top bets (I wrote), and a minimization option for a bet feed that displays less information than the regular
+feed post. The code sample abstracts away repetitive behavior such as connecting the props for each piece separately. Instead, the same information is passed into all of them to ensure that they update in real time.
+
+
+For example, If I were to update something in a post on the bet feed, such as add a wager, it would automatically update the value on the top bets sidebar. Below is the my code for topBets:
+
+```
+export default function TopBets({ posts = [] }: TopBetsProps) {
+  const topPosts = (Array.isArray(posts) ? posts : [])
+    .filter(
+      (p) =>
+        typeof p.leftTotal === "number" &&
+        typeof p.rightTotal === "number"
+    )
+    .slice()
+    .sort(
+      (a, b) =>
+        (b.leftTotal + b.rightTotal) -
+        (a.leftTotal + a.rightTotal)
+    )
+    .slice(0, 5);
+
+  return (
+    <div style={styles.container}>
+      <h2 style={styles.title}>
+        Top Bets
+      </h2>
+
+      {topPosts.length === 0 ? (
+        <div style={{ fontSize: "14px", color: "#555", textAlign: "center" }}>
+          No bets yet
+        </div>
+      ) : (
+        topPosts.map((post) => {
+          const total = post.leftTotal + post.rightTotal;
+
+          return (
+            <div
+              key={post.id}
+              style={{
+                padding: "8px 0",
+                borderBottom: "1px solid #eee",
+              }}
+            >
+              <div style={{ fontWeight: "bold" }}>
+                {post.title}
+              </div>
+
+              <div style={{ fontSize: "13px", color: "#555" }}>
+                Pool: {total} acorns
+              </div>
+
+              <div style={{ fontSize: "12px", color: "#777" }}>
+                {post.leftLabel}: {post.leftTotal} |{" "}
+                {post.rightLabel}: {post.rightTotal}
+              </div>
+            </div>
+          );
+        })
+      )}
+    </div>
+  );
+}e```
+
 
 **Medium-scale Architecture**
 
