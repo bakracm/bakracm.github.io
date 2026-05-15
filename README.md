@@ -66,8 +66,18 @@ export default function TopBets({ posts = [] }: TopBetsProps) {
       )}
     </div>
   );
-}e```
+}e
+```
+It is called inside the Main App.tsx:
 
+```
+  <aside style={cardStyle} aria-label="Top Bets">
+    <TopBets posts={posts} />
+  </aside>
+
+```
+Which is nice because it helps me avoid cluttering while still syncing up data from the bets. I don't have Sam's code for
+the additional component, but he also has a separate file for small bet which he makes a call to.
 
 **Medium-scale Architecture**
 
