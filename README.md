@@ -2,7 +2,8 @@
 
 ## Development
 
-**Medium-scale Abstraciton**
+**Medium-scale Abstraction**
+
 Sam and I co-wrote the UI betPost components which employ medium-scale abstraction. This consists of a bet feed and a sidebar with
 the top bets by interaction. The code sample abstracts away the requirement for multiple files that ultimately do the same 
 thing. Instead, the features rely on the betPost as a component despite having different purposes. (?) need to look at this.
@@ -74,6 +75,17 @@ entertainment.
 ## Engineering
 
 **Infrastructure**
+
+Some of the main development tools I used this semester have been VSCode,TypeScript, React, Vite + Vitest, GitHub, and ChatGPT. 
+TypeScript, React, Vite, and Vitest were honestly really helpful in the code development process, I enjoyed the suggestions and
+autofills sometimes were helpful. GitHub was also very helpful, having version control was pretty irreplacable, in my opinion. There 
+were so many times we had to go back and look at overwritten code or get back files that had accidentally been deleted. I think 
+making these mistakes got us into the habit of frequently making commits. Some of my teammates preferred to have a GitHub extension
+and found it easier to navigate. I decided to stick it out with the terminal and I honestly really enjoyed that. We got into a lot of
+situations where we would have issues like accidental pushes or wrong branching and they were quite hard to navigate in the 
+extension. Everyone ended up using the terminal in these situations, so it was a good skill for me to have and help with.
+
+A bug... hmmmmmmmm.
 
 **Self-learning**
 
