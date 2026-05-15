@@ -92,6 +92,21 @@ The exception were the registration and login components for which we used the r
 are prompted to sign in or create a new user. Additionally, we created test files that correspond with each of the components, and 
 those contained vitest imports.
 
+Most of the components get called in the App.tsx:
+
+```
+import banner from "./components/gambling-banner.jpg";
+import Button from "./button";
+import Post from "./betPost";
+import Leaderboard from "./Leaderboard";
+import Currency from "./Currency";
+import Login from "./Login";
+import Register from "./Registration";
+import TopBets from "./TopBets";
+
+```
+
+
 ## Verification
 
 **Testing Dimensions**
