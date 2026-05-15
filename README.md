@@ -10,6 +10,15 @@ thing. Instead, the features rely on the betPost as a component despite having d
 
 **Medium-scale Architecture**
 
+I was responsible for co-designing the front-end of our project. The pattern here was to use TypeScript + React and have a main
+App.tsx file which calls on a bunch of smaller components to create the UI. We made this design choice in an attempt to decompose
+and avoid cluttering our App file with things like component-specific types and styles.
+
+
+The result of this was one main App.tsx, and seven additional TypeScript component files: button, betPost, Currency, Leaderboard,
+Login, Registration, and TopBets. The imports for these files were primarily ones from react and imports of other component files.
+The exception were the registration and login components for which we used react-hook-form.
+
 ## Verification
 
 **Testing Dimensions**
@@ -66,11 +75,20 @@ entertainment.
 
 **Ideation**
 
+For ideation, my team and I created personas to help us brainstorm ideas. We tried to be very specific with the descriptions of each
+characters, because it left room to create more characters to fill gaps. We thought through what each of them would want and why they
+were using our app. Then we used this as a point of reflection for how to optimize the UI to fit their needs. For example, someone who
+is using the app socially would want to show off their success, so a good feature would be a leaderboard. We had another persona that
+would lurk on the app to stay in the loop on what's going on on campus. Since all they did on the app was scroll, we decided that
+anyone can view bets without being prompted to create a user.
+
+
+This approach showed to be very helpful as most of our components were thought of during that session. We did not develop all of them,
+as we ran out of time and had not gotten to stuff like tabs for categories. Regardless of this
+
 **Prototyping**
 
 **Evaluation**
-
-**Accessible Design**
 
 ## Engineering
 
