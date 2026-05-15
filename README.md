@@ -117,8 +117,9 @@ but Youssef and Lucas had done pretty much all of it by the time our meeting wra
 some of the tests that Sam had written were failing, so I fixed those and added additional tests to his files.
 
 
-Coverage idk rn it crashed have to look at it. The tests for the UI are generally check whether the components show up like they are 
-supposed to. For example, whether they pop-ups and containers have correct words and values when rendered. Some edge cases here 
+The coverage was 100 for most of the component files. Our main app was not because we chose to not test the minigames. 
+The tests for the UI are generally check whether the components show up like they are supposed to. For example, whether they pop-ups 
+and containers have correct words and values when rendered. Some edge cases here 
 checked what would happen if a component only got fed one line of data, or even none. For example, what would our leaderboard display
 if there was only one registered user? What would it display for none? These tests were harder to come up with because we had already
 reached 100% coverage for those files. Additionally, a few of our components, such as TopBets and Leaderboard, dealt with logic in
@@ -130,6 +131,22 @@ AI slop and a last-minute addition to our web app. I think this is apparent as t
 and would likely be reworked if we continued work on the project. The verification for this part was manuel, we spent a lot of time
 playing our mini-games trying to see if any major issues would arise. We did not catch onto anything big.
 
+Here is one of the test from my leaderboard, it takes in a list of mock user props and makes sure the leaderboard sorts in the correct order:
+
+```
+test("sorts users by acorns descending", () => {
+    render(<Leaderboard players={mockUsers} />);
+
+    const rows = screen.getAllByText(/acorns/);
+
+    expect(rows[0]).toHaveTextContent("1000 acorns");
+    expect(rows[1]).toHaveTextContent("80 acorns");
+    expect(rows[2]).toHaveTextContent("80 acorns");
+    expect(rows[3]).toHaveTextContent("70 acorns");
+  });
+
+```
+
 **Testing Infrastructure**
 
 For testing infrastructure, I used vitest which required running a single command in the terminal (npx vitest) for all tests. 
@@ -139,8 +156,22 @@ updating the appropriate .json files first and then creating a test folder with 
 testing was pretty straight-forward, we had a different test file for each component/file that corresponds to the name.tsx with 
 name.test.tsx.
 
-Running "npx vitest --coverage" was pretty helpful, but then I figured out how to incorporate the tests into build through github
-(doing that right now)
+Running "npx vitest --coverage" was pretty helpful, it ran all of our tests at once for both the front and back ends. As a team, we managed to uncover one major bug with testing. Anyone could create a bet without logging in, which we were not intending on having
+and we did not realize when we clicked through our program.
+
+This was the test that uncovered the bug:
+
+```
+test('createMarket validates input before inserting', async () => {
+    const client = createClient();
+    mockDb.connect.mockResolvedValue(client);
+    client.query.mockResolvedValueOnce().mockResolvedValueOnce();
+
+    await expect(createMarket('', '', 'desc', 'yes', 'no', '2099-01-01T00:00:00.000Z')).rejects.toThrow('Invalid market data');
+    expect(client.query).toHaveBeenNthCalledWith(1, 'BEGIN');
+    expect(client.query).toHaveBeenNthCalledWith(2, 'ROLLBACK');
+  });
+```
 
 ## Design
 
@@ -170,11 +201,20 @@ anyone can view bets without being prompted to create a user.
 
 
 This approach showed to be very helpful as most of our components were thought of during that session. We did not develop all of them,
-as we ran out of time and had not gotten to stuff like tabs for categories. Regardless of this
+as we ran out of time and had not gotten to stuff like tabs for categories. Regardless of this, it was one of the more helpfful things we did
 
-**Prototyping**
+<img width="3024" height="4032" alt="593131980-59ceb58d-c41c-43c3-b0ac-da196af86bf6" src="https://github.com/user-attachments/assets/9660002c-30f7-4aba-b341-71792296373e" />
+<img width="3024" height="4032" alt="593131993-bde02a8b-d672-4f05-9612-259d71716d35" src="https://github.com/user-attachments/assets/0f8593b3-b20e-4010-bfb5-513add2780f9" />
+<img width="3024" height="4032" alt="593131997-f16f22ed-d48b-4a7c-8ad4-8ddec9f013e1" src="https://github.com/user-attachments/assets/53ea5b64-3081-4373-b00a-5bfb7489379c" />
+<img width="3024" height="4032" alt="593131987-819c2ea9-a394-4b10-9b12-dec3ff153cd5" src="https://github.com/user-attachments/assets/02e91d94-7e58-4954-b9cd-5852c111629d" />
 
-**Evaluation**
+
+**Prototyping and Evaluation**
+
+For prototyping, I showed my friend our MVP. I intended to find out if they could name some missing features as well as
+if the UI layout was optimal. The interaction unveiled that we would be better off with more components such as a leaderboard
+or a currency count, because our MVP let the user bet with infinite currency. These were my main takeaways, and we ended
+up implementing them in the development process later.
 
 ## Engineering
 
@@ -187,9 +227,10 @@ were so many times we had to go back and look at overwritten code or get back fi
 making these mistakes got us into the habit of frequently making commits. Some of my teammates preferred to have a GitHub extension
 and found it easier to navigate. I decided to stick it out with the terminal and I honestly really enjoyed that. We got into a lot of
 situations where we would have issues like accidental pushes or wrong branching and they were quite hard to navigate in the 
-extension. Everyone ended up using the terminal in these situations, so it was a good skill for me to have and help with.
+extension. Everyone ended up using the terminal in these situations, so it was a good skill for me to have and help with. 
 
-A bug... hmmmmmmmm.
+As for debugging, we wound up having a lot of warnings and errors concerning imports and calls to components. ChatGPT was
+very helpful in figuring out what needed to be changed, as it was usually a few lines that had to be added elsewhere.
 
 **Self-learning**
 
@@ -231,6 +272,7 @@ work became much more collaborative. Almost all our code was written with us sit
 and would verbally communicate what needed to get done. I would even argue that the difficulty using the tool was caused by better 
 collaboration.
 
+
 For filing and resolving bugs, we also used attempted to use github issues. I opened 7 of them over the course of the semester for
 things like resolving bets, creating a side view of the top bets, making the comments work, etc. For the bugs that I resolved, I
 noted the issue # in my pull request. In the descriptions of the pull requests i made, I noted solving the following issues: Issue 
@@ -246,8 +288,9 @@ multiple components. While I understood where he was coming from, I had concerns
 and things like testing and accessibility depended on that component. We ultimately decided as a group that it was for the best to
 scrap the component to not introduce new issues, and I closed the pull request with a comment describing why I did not accept it.
 
-
-
-
-
 **Accessible Design**
+
+For accessibility, we added html tags for screen readers into our code as well as labels to buttons, headers, etc. Majority
+of my work in design had to do with fixing UI looks after assessing the Wave score. For our MVP, we managed to get above 9,
+but it came down to a 7.9 later on due to some components with gray text. I also added a bit in Registration and login that 
+automatically puts the cursor in the first text box when you click on either log in or create account
