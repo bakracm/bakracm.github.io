@@ -13,7 +13,33 @@ thing. Instead, the features rely on the betPost as a component despite having d
 
 **Testing Dimensions**
 
+I was responsible for writing tests for the front-end work that Sam and I developed. I set everything up for the team and then wrote
+tests on the Leaderboard and Currency components for other to use as example. I had intended on helping out with back-end testing, 
+but Youssef and Lucas had done pretty much all of it by the time our meeting wrapped up. After revising our project, I noticed that
+some of the tests that Sam had written were failing, so I fixed those and added additional tests to his files.
+
+
+Coverage idk rn it crashed have to look at it. The tests for the UI are generally check whether the components show up like they are 
+supposed to. For example, whether they pop-ups and containers have correct words and values when rendered. Some edge cases here 
+checked what would happen if a component only got fed one line of data, or even none. For example, what would our leaderboard display
+if there was only one registered user? What would it display for none? These tests were harder to come up with because we had already
+reached 100% coverage for those files. Additionally, a few of our components, such as TopBets and Leaderboard, dealt with logic in
+the front-end, so for those, we dug deeper than the "does this display correctly?" testing process.
+
+
+We made the decision to not cover the mini-games with our tests. Despite the mini-games being a UI component, they were in big part
+AI slop and a last-minute addition to our web app. I think this is apparent as they don't really fit into the aesthetics of the UI,
+and would likely be reworked if we continued work on the project. The verification for this part was manuel, we spent a lot of time
+playing our mini-games trying to see if any major issues would arise. We did not catch onto anything big.
+
 **Testing Infrastructure**
+
+For testing infrastructure, I used vitest which required running a single command in the terminal (npx vitest) for all tests. 
+I was responsible for setting up my team's testing and testing some front-end files. I figured out which of the framework and
+packages needed to be installed and then walked mt teammates through it once i got it up and working for an example file. The 
+strategy was to update the appropriate json files first and then create a test folder that does the imports. The front-end testing
+was pretty straight-forward, we have a different test file for each component/file that corresponds to the name.tsx with 
+name.test.tsx.
 
 **Advanced Testing Techniques**
 
