@@ -278,6 +278,13 @@ things like resolving bets, creating a side view of the top bets, making the com
 noted the issue # in my pull request. In the descriptions of the pull requests i made, I noted solving the following issues: Issue 
 #43 resolved, Issue #27 complete, Issue #27 complete.
 
+
+As mentioned, we ended up using pull requests a lot. Out of the 30-ish, about 10 were mine, and it was helpful because someone
+could read through the code and make sure it wouldn't break anything before pushing. It also helped us keep track of versions a bit
+better, and it was easier to collaborate when we could go back and revert something that broke the codebase (while being able to
+access the insertions and deletions)
+
+
 For code reviews, i often reviewed and merged my teammates' code. For some that I did not merge, I helped the person reviewing fix
 merge conflicts. One notable instance of a code review was for Sam's additional betPost instance. He had tried to merge it twice.
 He ended up making way too many changes to the files and deleting some of the main ones, so the conflicts were too complex to be
@@ -290,7 +297,7 @@ scrap the component to not introduce new issues, and I closed the pull request w
 
 **Accessible Design**
 
-For accessibility, we added html tags for screen readers into our code as well as labels to buttons, headers, etc. Majority
-of my work in design had to do with fixing UI looks after assessing the Wave score. For our MVP, we managed to get above 9,
+For accessibility, I helped Lucas add some html tags for screen readers into our code as well as labels to buttons, headers, etc.
+Majority of my work in design had to do with fixing UI looks after assessing the Wave score. For our MVP, we managed to get above 9,
 but it came down to a 7.9 later on due to some components with gray text. I also added a bit in Registration and login that 
 automatically puts the cursor in the first text box when you click on either log in or create account
