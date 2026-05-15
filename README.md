@@ -17,7 +17,9 @@ and avoid cluttering our App file with things like component-specific types and 
 
 The result of this was one main App.tsx, and seven additional TypeScript component files: button, betPost, Currency, Leaderboard,
 Login, Registration, and TopBets. The imports for these files were primarily ones from react and imports of other component files.
-The exception were the registration and login components for which we used react-hook-form.
+The exception were the registration and login components for which we used the react-hook-form library to handle the forms when you 
+are prompted to sign in or create a new user. Additionally, we created test files that correspond with each of the components, and 
+those contained vitest imports.
 
 ## Verification
 
@@ -53,8 +55,6 @@ name.test.tsx.
 
 Running "npx vitest --coverage" was pretty helpful, but then I figured out how to incorporate the tests into build through github
 (doing that right now)
-
-**Advanced Testing Techniques**
 
 ## Design
 
@@ -133,9 +133,34 @@ This process worked out well for the most part, I think everyone stuck to their 
 at least. We were consistent with attending meetings and any time conflicts were communicated early on through messaging. I think
 what got in the way for me was the strict divide between the front and back. We would sometimes end up in situations where our merge
 conflicts affected the back end, and Sam and I did not understand it well enough to work through them ourselves. Looking back, I
-definitely wish we had mixed up roles for a short period earlier in the process so that we could each have some base knowledge about the other side. That way we could have prevented the awkward time gaps that it took to fix these types of issues.
+definitely wish we had mixed up roles for a short period earlier in the process so that we could each have some base knowledge about
+the other side. That way we could have prevented the awkward time gaps that it took to fix these types of issues.
 
 **Collaboration**
+
+For using collaborative tools, my team and I did our best to use the chart with GitHub issues. This was a weekly activity during the
+first half of the semester because the work we did was mostly remote. We would sit down on Fridays and treat it as a to-do list, 
+assigning a bunch of tasks (whether that be implementation or fixing bugs). Once the second half of the semester came around, our 
+work became much more collaborative. Almost all our code was written with us sitting in the same room, so we stopped using the chart
+and would verbally communicate what needed to get done. I would even argue that the difficulty using the tool was caused by better 
+collaboration.
+
+For filing and resolving bugs, we also used attempted to use github issues. I opened 7 of them over the course of the semester for
+things like resolving bets, creating a side view of the top bets, making the comments work, etc. For the bugs that I resolved, I
+noted the issue # in my pull request. In the descriptions of the pull requests i made, I noted solving the following issues: Issue 
+#43 resolved, Issue #27 complete, Issue #27 complete.
+
+For code reviews, i often reviewed and merged my teammates' code. For some that I did not merge, I helped the person reviewing fix
+merge conflicts. One notable instance of a code review was for Sam's additional betPost instance. He had tried to merge it twice.
+He ended up making way too many changes to the files and deleting some of the main ones, so the conflicts were too complex to be
+resolved in a web editor. The second time around, he managed to create a pull request for the same component. For some reason, it
+showed no merge conflicts the second time. However, the big edits prompted me to have a conversation with him because it was the night
+before the final deadline. He explained that he tried to make the code better by decluttering the betPost and splitting it into
+multiple components. While I understood where he was coming from, I had concerns about things breaking the night before our deadline,
+and things like testing and accessibility depended on that component. We ultimately decided as a group that it was for the best to
+scrap the component to not introduce new issues, and I closed the pull request with a comment describing why I did not accept it.
+
+
 
 
 
