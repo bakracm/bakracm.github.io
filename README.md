@@ -48,6 +48,20 @@ entertainment.
 
 **Self-learning**
 
+During the tech tutorial, I was responsible for understanding and explaining JavaScript and TypeScript. This worked out well because
+we chose to use typescript for all of the front-end code. In my tutorial, I explained each at a high level, compared them, and then
+demonstrated how to access and set up TypeScript. This proved to be really helpful because we had to go through the process to obtain
+it, and it's always nice to know the benefits of your tools.
+
+
+TypeScript ended up being very useful, it would have been much more work to build our UI without it. We enjoyed how great it was with
+types and catching type-related issues as we were writing our code. Some fallbacks were definitely how difficult it was to use. I was
+expecting something closer to Java, so it was definitely unexpected. I hadn't used JavaScript/HTML in the past, so I think that's
+why it was exceptionally hard to pick up. I watched some videos on it, but ChatGPT ended up being more helpful when it came to
+explaining why we do things a certain way and what exactly each line was doing. For me personally, a major sticking point was
+understanding how "div" worked and what it meant. I think it definitely took some getting used to, but looking up explanations
+provided us with a lot of clarity.
+
 **Process**
 
 To distribute our work, my team split into two pairs for front-end and back-end development. I got to work with Sam on the front-end
