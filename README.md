@@ -35,11 +35,14 @@ playing our mini-games trying to see if any major issues would arise. We did not
 **Testing Infrastructure**
 
 For testing infrastructure, I used vitest which required running a single command in the terminal (npx vitest) for all tests. 
-I was responsible for setting up my team's testing and testing some front-end files. I figured out which of the framework and
-packages needed to be installed and then walked mt teammates through it once i got it up and working for an example file. The 
-strategy was to update the appropriate json files first and then create a test folder that does the imports. The front-end testing
-was pretty straight-forward, we have a different test file for each component/file that corresponds to the name.tsx with 
+I took on the responsibility of setting up my team's testing and figuring out how to put everything together. I noted which packages
+needed to be installed and then walked my group through it once i got it up and working for an example file. This included me 
+updating the appropriate .json files first and then creating a test folder with a setup file that does the imports. The front-end
+testing was pretty straight-forward, we had a different test file for each component/file that corresponds to the name.tsx with 
 name.test.tsx.
+
+Running "npx vitest --coverage" was pretty helpful, but then I figured out how to incorporate the tests into build through github
+(doing that right now)
 
 **Advanced Testing Techniques**
 
